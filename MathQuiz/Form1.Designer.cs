@@ -15,6 +15,8 @@
 
         int dividend;
         int divisor;
+
+        int timeLeft;
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -48,6 +50,22 @@
             dividedLeftLabel.Text = dividend.ToString();
             dividedRightLabel.Text = divisor.ToString();
             quotient.Value = 0;
+
+            timeLeft = 30;
+            timeLabel.Text = "30 seconds";
+            timer1.Start();
+        }
+
+        private bool CheckTheAnswer()
+        {
+            if ((addend1 + addend2 == sum.Value) && (minuend - subtrahend == difference.Value) && (multiplicand * multiplier == product.Value) && (dividend / divisor == quotient.Value))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         /// <summary>
         ///  Clean up any resources being used.
@@ -70,6 +88,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             timeLabel = new Label();
             label1 = new Label();
             plusLeftLabel = new Label();
@@ -93,6 +112,7 @@
             label12 = new Label();
             dividedLeftLabel = new Label();
             startButton = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)sum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)difference).BeginInit();
             ((System.ComponentModel.ISupportInitialize)product).BeginInit();
@@ -165,6 +185,7 @@
             sum.Name = "sum";
             sum.Size = new Size(100, 39);
             sum.TabIndex = 1;
+            sum.Enter += answer_Enter;
             // 
             // difference
             // 
@@ -173,6 +194,7 @@
             difference.Name = "difference";
             difference.Size = new Size(100, 39);
             difference.TabIndex = 2;
+            difference.Enter += answer_Enter;
             // 
             // label3
             // 
@@ -221,6 +243,7 @@
             product.Name = "product";
             product.Size = new Size(100, 39);
             product.TabIndex = 3;
+            product.Enter += answer_Enter;
             // 
             // label5
             // 
@@ -269,6 +292,7 @@
             quotient.Name = "quotient";
             quotient.Size = new Size(100, 39);
             quotient.TabIndex = 4;
+            quotient.Enter += answer_Enter;
             // 
             // label10
             // 
@@ -321,6 +345,11 @@
             startButton.Text = "Start the quiz";
             startButton.UseVisualStyleBackColor = true;
             startButton.Click += startButton_Click;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // Form1
             // 
@@ -387,5 +416,6 @@
         private Label label12;
         private Label dividedLeftLabel;
         private Button startButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
